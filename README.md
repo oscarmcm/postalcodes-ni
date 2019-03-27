@@ -15,7 +15,7 @@ Quickstart
 ----------
 Install `postalcodes-ni`:
 
-    $ pip install postalcodes_ni
+    $ pip install postalcodes-ni
 
 Then use it in your project:
 
