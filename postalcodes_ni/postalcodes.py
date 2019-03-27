@@ -1,6 +1,6 @@
 import unicodedata
 
-from ._codes import _postal_codes
+from ._codes import _postal_codes as postal_codes
 from .exceptions import ISOCodeError, PostalCodeError
 
 
