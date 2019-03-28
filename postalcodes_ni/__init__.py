@@ -14,4 +14,4 @@ __all__ = [
 
 __author__ = """Oscar Cortez"""
 __email__ = 'om.cortez.2010@gmail.com'
-__version__ = '1.1.1'
+__version__ = '1.2.0'

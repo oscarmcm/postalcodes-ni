@@ -18,7 +18,7 @@ setup(
     author="Oscar Cortez",
     author_email='om.cortez.2010@gmail.com',
     name='postalcodes_ni',
-    version='1.1.1',
+    version='1.2.0',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
