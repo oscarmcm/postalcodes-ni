@@ -26,6 +26,8 @@ from postalcodes_ni import (
 )
 ```
 
+You can find the documentation in [https://postalcodes-ni.readthedocs.io](https://postalcodes-ni.readthedocs.io/en/latest/)
+
 This package uses data from those websites:
 
 - [ISO 3166-2:NI](https://es.wikipedia.org/wiki/ISO_3166-2:NI)
@@ -44,7 +46,7 @@ Usage
 Example
 --------------
 
-First import the functions that you want to use
+First, you need import the methods that you want to use
 
 ```python
 from postalcodes_ni import (
@@ -69,7 +71,7 @@ For get an specific municipality in a department use the following methods
 
 ```python
 >>> # Get a municipality using his name
->>> get_municipality_by_name(('nindiri')
+>>> get_municipality_by_name('nindiri')
 ('Nindirí', 42200)
 
 >>> # Get a municipality using his postal code
