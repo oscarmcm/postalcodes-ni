@@ -6,9 +6,9 @@ Python package for handle Nicaragua postal codes
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![made-with-python](https://img.shields.io/pypi/pyversions/postalcodes_ni.svg)](https://pypi.org/project/postalcodes_ni/)
-[![PyPI](https://badge.fury.io/py/postalcodes_ni.png)](https://badge.fury.io/py/postalcodes_ni)
+[![PyPI version](https://badge.fury.io/py/postalcodes-ni.svg)](https://badge.fury.io/py/postalcodes-ni)
 [![Travis-ci](https://travis-ci.org/oscarmcm/postalcodes-ni.png?branch=master)](https://travis-ci.org/oscarmcm/postalcodes-ni)
-[![GitHub version](https://badge.fury.io/gh/oscarmcm%2Fpostalcodes-ni.svg)](https://github.com/oscarmcm/postalcodes-ni)
+[![GitHub version](https://badge.fury.io/gh/oscarmcm%2Fpostalcodes-ni.svg)](https://badge.fury.io/gh/oscarmcm%2Fpostalcodes-ni)
 [![Documentation Status](https://readthedocs.org/projects/postalcodes-ni/badge/?version=latest)](http://postalcodes-ni.readthedocs.io/?badge=latest)
 
 Quickstart
