@@ -1,5 +1,5 @@
 Welcome to postalcodes-ni's documentation!
-======================================
+=============================================
 
 .. toctree::
    :maxdepth: 2

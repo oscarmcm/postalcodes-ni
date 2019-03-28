@@ -21,7 +21,7 @@ Then use it in your project:
 
 ```python
 from postalcodes_ni import (
-    get_department_by_iso, get_department_by_postal,
+    get_all_municipalities_by_iso, get_all_municipalities_by_postal,
     get_municipality_by_name, get_municipality_by_postal
 )
 ```
@@ -36,10 +36,46 @@ Usage
 
 `postalcodes_ni` exposes the following methods:
 
-- `get_department_by_iso` for get all the municipalities in a department using the ISO code - Ex **MN** for **Managua** department.
-- `get_department_by_postal` for get all the municipalities in a department using the postal code - Ex **10000** for **Managua** department.
-- `get_municipality_by_name` for get an expecific municipality using his name - Ex **Altagracia** for the **Rivas** department.
-- `get_municipality_by_postal` for get an expecific municipality using his postal code - Ex **48800** for the municipality of **Altagracia** from **Rivas** department.
+- `get_all_municipalities_by_iso` for get all the municipalities in a department using the ISO code - Ex **MN** for **Managua** department.
+- `get_all_municipalities_by_postal` for get all the municipalities in a department using the postal code - Ex **10000** for **Managua** department.
+- `get_municipality_by_name` for get an specific municipality using his name - Ex **Altagracia** for the **Rivas** department.
+- `get_municipality_by_postal` for get an specific municipality using his postal code - Ex **48800** for the municipality of **Altagracia** from **Rivas** department.
+
+Example
+--------------
+
+First import the functions that you want to use
+
+```python
+from postalcodes_ni import (
+    get_all_municipalities_by_iso, get_all_municipalities_by_postal,
+    get_municipality_by_name, get_municipality_by_postal
+)
+```
+
+For get all the municipalities in a department use the following methods
+
+```python
+>>> # Get all the municipalities in Carazo department using iso code
+>>> get_all_municipalities_by_iso('CA')
+[('Jinotepe', 45000), ('Dolores', 46100), ('El Rosario', 46200), ...]
+
+>>> # Get all the municipalities in Carazo department using postal code
+>>> get_all_municipalities_by_postal(45000)
+[('Jinotepe', 45000), ('Dolores', 46100), ('El Rosario', 46200), ...]
+```
+
+For get an specific municipality in a department use the following methods
+
+```python
+>>> # Get a municipality using his name
+>>> get_municipality_by_name(('nindiri')
+('Nindirí', 42200)
+
+>>> # Get a municipality using his postal code
+>>> get_municipality_by_postal(42500)
+('Catarina', 42500)
+```
 
 Running Tests
 --------------
