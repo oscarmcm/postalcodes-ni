@@ -1,29 +1,33 @@
 import pytest
 
 from postalcodes_ni import (
-    get_department_by_iso, get_department_by_postal,
-    get_municipality_by_name, get_municipality_by_postal
+    get_all_municipalities_by_iso,
+    get_all_municipalities_by_postal,
+    get_municipality_by_name,
+    get_municipality_by_postal,
 )
 from postalcodes_ni.exceptions import ISOCodeError, PostalCodeError
 
 
-def test_get_department_by_iso():
+def test_get_all_municipalities_by_iso():
     """ Test get all the municipalities from a department by iso code
     """
     with pytest.raises(ISOCodeError):
-        get_department_by_iso('WRONG')
-    mn = get_department_by_iso('MN')
+        get_all_municipalities_by_iso('WRONG')
+    mn = get_all_municipalities_by_iso('MN')
     assert isinstance(mn, list)
+    assert isinstance(mn[0], tuple)
     assert len(mn) > 0
 
 
-def test_get_department_by_postal():
+def test_get_all_municipalities_by_postal():
     """ Test get all the municipalities from a department by postal code
     """
     with pytest.raises(PostalCodeError):
-        get_department_by_postal(666)
-    mn = get_department_by_postal(10000)
+        get_all_municipalities_by_postal(666)
+    mn = get_all_municipalities_by_postal(10000)
     assert isinstance(mn, list)
+    assert isinstance(mn[0], tuple)
     assert len(mn) > 0
 
 
@@ -32,9 +36,20 @@ def test_get_municipality_by_name():
     """
     with pytest.raises(PostalCodeError):
         get_municipality_by_name('WRONG')
+    # Search by neighborhood name
     mn = get_municipality_by_name('centro historico cultural')
-    assert isinstance(mn, dict)
-    assert len(mn.keys()) == 3
+    assert isinstance(mn, tuple)
+    assert isinstance(mn[0], str)
+    assert isinstance(mn[1], int)
+    assert mn[1] == 11001
+    assert len(mn) == 2
+    # Search by municipality name
+    mn = get_municipality_by_name('San Carlos')
+    assert isinstance(mn, tuple)
+    assert isinstance(mn[0], str)
+    assert isinstance(mn[1], int)
+    assert len(mn) == 2
+    assert mn[1] == 91000
 
 
 def test_get_municipality_by_postal():
@@ -43,8 +58,10 @@ def test_get_municipality_by_postal():
     with pytest.raises(PostalCodeError):
         get_municipality_by_postal(666)
     mn = get_municipality_by_postal(11001)
-    assert isinstance(mn, dict)
-    assert len(mn.keys()) == 3
+    assert isinstance(mn, tuple)
+    assert isinstance(mn[0], str)
+    assert isinstance(mn[1], int)
+    assert len(mn) == 2
 
 
 def test_all():
@@ -52,6 +69,9 @@ def test_all():
     """
     import postalcodes_ni
 
-    missing = set(n for n in postalcodes_ni.__all__
-                  if getattr(postalcodes_ni, n, None) is None)
+    missing = set(
+        n
+        for n in postalcodes_ni.__all__
+        if getattr(postalcodes_ni, n, None) is None
+    )
     assert len(missing) == 0

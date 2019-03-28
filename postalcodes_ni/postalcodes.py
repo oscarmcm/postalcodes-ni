@@ -4,8 +4,8 @@ from ._codes import _postal_codes as postal_codes
 from .exceptions import ISOCodeError, PostalCodeError
 
 
-def get_department_by_iso(iso_code: str) -> list:
-    """ Returns all the records for a department based on the ISO code
+def get_all_municipalities_by_iso(iso_code: str) -> list:
+    """ Returns all the municipalities for a department based on the ISO code
     """
     iso_code = iso_code.upper()
     if iso_code not in postal_codes:
@@ -13,14 +13,17 @@ def get_department_by_iso(iso_code: str) -> list:
             f'Incorrect ISO 3166-2 code \n The code {iso_code} doesnt exists'
         )
 
-    return postal_codes.get(iso_code)
+    municipalities = [
+        (m.get('name'), m.get('code')) for m in postal_codes.get(iso_code)
+    ]
+    return municipalities
 
 
-def get_department_by_postal(postal_code: int) -> list:
-    """ Returns all the records for a department based on the postal code
+def get_all_municipalities_by_postal(postal_code: int) -> list:
+    """ Returns all the municipalities for a department based on the postal code
     """
     department_key = None
-    for department, municipalities  in postal_codes.items():
+    for department, municipalities in postal_codes.items():
         for municipality in municipalities:
             if (
                 municipality['code'] == postal_code
@@ -32,11 +35,14 @@ def get_department_by_postal(postal_code: int) -> list:
         raise PostalCodeError(
             f'Cant find any department with the code {postal_code}'
         )
+    municipalities = [
+        (m.get('name'), m.get('code'))
+        for m in postal_codes.get(department_key)
+    ]
+    return municipalities
 
-    return postal_codes.get(department_key)
 
-
-def get_municipality_by_name(name: str) -> dict:
+def get_municipality_by_name(name: str) -> tuple:
     """ Returns a single record for a municipality based on the name
     """
 
@@ -52,7 +58,7 @@ def get_municipality_by_name(name: str) -> dict:
     municipality_key = None
     for department, municipalities in postal_codes.items():
         for index, municipality in enumerate(municipalities):
-            if strip_accents(municipality['municipality']) == name:
+            if strip_accents(municipality['name']) == name:
                 department_key = department
                 municipality_key = index
                 break
@@ -65,8 +71,8 @@ def get_municipality_by_name(name: str) -> dict:
         raise PostalCodeError(
             f'Cant find any municipality with the name {name}'
         )
-
-    return postal_codes.get(department_key)[municipality_key]
+    municipality = postal_codes.get(department_key)[municipality_key]
+    return (municipality.get('name'), municipality.get('code'))
 
 
 def get_municipality_by_postal(postal_code: int) -> dict:
@@ -75,7 +81,8 @@ def get_municipality_by_postal(postal_code: int) -> dict:
     for department, municipalities in postal_codes.items():
         for index, municipality in enumerate(municipalities):
             if municipality['code'] == postal_code:
-                return postal_codes[department][index]
+                mun = postal_codes[department][index]
+                return (mun.get('name'), mun.get('code'))
 
     raise PostalCodeError(
         f'Cant find any municipality with the code {postal_code}'

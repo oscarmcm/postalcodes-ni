@@ -2,12 +2,12 @@
 
 """Top-level package for postalcodes-ni."""
 from postalcodes_ni.postalcodes import (
-    get_department_by_iso, get_department_by_postal,
+    get_all_municipalities_by_iso, get_all_municipalities_by_postal,
     get_municipality_by_name, get_municipality_by_postal
 )
 __all__ = [
-    'get_department_by_iso',
-    'get_department_by_postal',
+    'get_all_municipalities_by_iso',
+    'get_all_municipalities_by_postal',
     'get_municipality_by_name',
     'get_municipality_by_postal'
 ]
